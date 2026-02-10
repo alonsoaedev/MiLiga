@@ -1,0 +1,87 @@
+# =====================
+# Python
+# =====================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled / optimized files
+*.so
+*.pyd
+
+# =====================
+# Virtual environments
+# =====================
+.venv/
+venv/
+env/
+ENV/
+
+# =====================
+# Environment variables
+# =====================
+.env
+.env.*
+!.env.example
+
+# =====================
+# FastAPI / Uvicorn
+# =====================
+*.log
+logs/
+uvicorn.log
+
+# =====================
+# Testing
+# =====================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# =====================
+# Mypy / Ruff / Linters
+# =====================
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# =====================
+# Packaging
+# =====================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =====================
+# Jupyter / Notebooks
+# =====================
+.ipynb_checkpoints/
+
+# =====================
+# IDEs & Editors
+# =====================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# =====================
+# OS files
+# =====================
+Thumbs.db
+
+# =====================
+# Database (local dev)
+# =====================
+*.sqlite3
+*.db
+
+# =====================
+# Docker
+# =====================
+docker-compose.override.yml
