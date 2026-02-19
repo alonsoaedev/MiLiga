@@ -10,6 +10,14 @@ from src.infrastructure.config.dependencies import DependencyContainer, get_cont
 
 router = APIRouter(prefix="/tournaments", tags=["Tournaments"])
 
+@router.get("/", response_model=list[TournamentResponseDTO])
+async def get_all_tournaments(container: DependencyContainer = Depends(get_container)):
+    try:
+        use_case = container.get_all_tournaments_use_case()
+        return await use_case.execute()
+    except Exception as exception:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exception))
+
 @router.post("/", response_model=TournamentResponseDTO, status_code=status.HTTP_201_CREATED)
 async def create_tournament(dto: CreateTournamentDTO, container: DependencyContainer = Depends(get_container)):
     try:

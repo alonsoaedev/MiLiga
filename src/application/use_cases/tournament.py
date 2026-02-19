@@ -72,3 +72,26 @@ class RegisterTeamToTournamentUseCase:
             team_ids=updated_tournament.team_ids
         )
 
+class GetAllTournamentsUseCase:
+    def __init__(self, tournament_repository: TournamentRepository):
+        self._tournament_repository = tournament_repository
+
+    async def execute(self) -> list[TournamentResponseDTO]:
+        tournaments: list[Tournament] = await self._tournament_repository.get_all()
+
+        return [
+            TournamentResponseDTO(
+                id=tournament.id,
+                name=tournament.name,
+                created_at=tournament.created_at,
+                status=tournament.status.value,
+                max_teams=tournament.max_teams,
+                locations=[
+                    LocationDTO(name=location.name, address=location.address)
+                    for location in tournament.locations
+                ],
+                registered_teams_count=tournament.registered_teams_count,
+                team_ids=tournament.team_ids
+            )
+            for tournament in tournaments
+        ]

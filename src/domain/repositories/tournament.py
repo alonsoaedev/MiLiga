@@ -15,3 +15,7 @@ class TournamentRepository(ABC):
     @abstractmethod
     async def get_by_id(self, tournament_id: UUID) -> Tournament:
         pass
+
+    @abstractmethod
+    async def get_all(self, tournament_id: UUID) -> list[Tournament]:
+        pass

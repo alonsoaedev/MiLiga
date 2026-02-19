@@ -17,4 +17,7 @@ class InMemoryTournamentRepository(TournamentRepository):
     
     async def get_by_id(self, tournament_id: UUID) -> Tournament:
         return self._tournaments.get(tournament_id)
+    
+    async def get_all(self) -> list[Tournament]:
+        return list(self._tournaments.values())
 
