@@ -10,7 +10,7 @@ class Player:
             raise ValueError("Player name cannot be empty")
         
         self.name = name
-        self.lat_name = last_name
+        self.last_name = last_name
 
 class Team:
     def __init__(self, id: UUID, name: str, players: list[Player] = None):
