@@ -23,7 +23,7 @@ class CreateTournamentDTO(BaseModel):
             raise ValueError("At least one location must be provided")
         return value
 
-class CreateTournamentResultDTO(BaseModel):
+class TournamentResponseDTO(BaseModel):
     id: UUID
     name: str
     created_at: datetime
@@ -31,3 +31,4 @@ class CreateTournamentResultDTO(BaseModel):
     max_teams: int
     locations: list[LocationDTO]
     registered_teams_count: int
+    team_ids: set[UUID]
