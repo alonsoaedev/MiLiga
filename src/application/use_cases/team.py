@@ -24,7 +24,25 @@ class CreateTeamUseCase:
             id=saved_team.id,
             name=saved_team.name,
             players=[
-                PlayerDTO(name=player.name, last_name=player.lat_name)
+                PlayerDTO(name=player.name, last_name=player.last_name)
                 for player in saved_team.players
             ]
         )
+
+class GetAllTeamsUseCase:
+    def __init__(self, team_repository: TeamRepository):
+        self.team_repository = team_repository
+
+    async def execute(self) -> list[TeamDTO]:
+        teams: list[Team] = await self.team_repository.get_all()
+        return [
+            TeamDTO(
+                id=team.id,
+                name=team.name,
+                players=[
+                    PlayerDTO(name=player.name, last_name=player.last_name)
+                    for player in team.players
+                ]
+            )
+            for team in teams
+        ]

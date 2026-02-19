@@ -9,6 +9,14 @@ from src.infrastructure.config.dependencies import DependencyContainer, get_cont
 
 router = APIRouter(prefix="/teams", tags=["Teams"])
 
+@router.get("/", response_model=list[TeamDTO])
+async def get_all_teams(container: DependencyContainer = Depends(get_container)):
+    try:
+        use_case = container.get_get_all_teams_use_case()
+        return await use_case.execute()
+    except Exception as exception:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exception))
+
 @router.post("/", response_model=TeamDTO, status_code=status.HTTP_201_CREATED)
 async def create_team(
     dto: TeamDTO,

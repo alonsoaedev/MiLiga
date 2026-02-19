@@ -5,6 +5,7 @@ from functools import lru_cache
 
 # own
 from src.application.use_cases.team import CreateTeamUseCase
+from src.application.use_cases.team import GetAllTeamsUseCase
 from src.application.use_cases.tournament import CreateTournamentUseCase
 from src.application.use_cases.tournament import GetAllTournamentsUseCase
 from src.application.use_cases.tournament import RegisterTeamToTournamentUseCase
@@ -27,6 +28,9 @@ class DependencyContainer:
         return RegisterTeamToTournamentUseCase(tournament_repository=self._tournament_repository, team_repository=self._team_repository)
     
     # Team use cases
+    def get_get_all_teams_use_case(self) -> GetAllTeamsUseCase:
+        return GetAllTeamsUseCase(team_repository=self._team_repository)
+
     def get_create_team_use_case(self) -> CreateTeamUseCase:
         return CreateTeamUseCase(team_repository=self._team_repository)
     

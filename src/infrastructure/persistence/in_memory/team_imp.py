@@ -17,3 +17,6 @@ class InMemoryTeamRepository(TeamRepository):
 
     async def get_by_id(self, team_id: UUID) -> Team:
         return self.teams.get(team_id)
+    
+    async def get_all(self) -> list[Team]:
+        return list(self.teams.values())
