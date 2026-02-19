@@ -38,3 +38,13 @@ class Tournament:
     @property
     def registered_teams_count(self) -> int:
         return len(self.team_ids)
+    
+    def add_team(self, team_id: UUID):
+        if self.status != TournamentStatus.REGISTRATION:
+            raise ValueError("Cannot register teams when tournament is not in registration status")
+        if self.registered_teams_count >= self.max_teams:
+            raise ValueError("Tournament has reached maximum number of teams")
+        if team_id in self.team_ids:
+            raise ValueError("Team is already registered in the tournament")
+        
+        self.team_ids.add(team_id)

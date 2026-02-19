@@ -10,3 +10,7 @@ class TeamRepository(ABC):
     @abstractmethod
     async def save(self, team: Team) -> Team:
         pass
+
+    @abstractmethod
+    async def get_by_id(self, team_id: str) -> Team:
+        pass

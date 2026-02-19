@@ -14,3 +14,6 @@ class InMemoryTeamRepository(TeamRepository):
     async def save(self, team: Team) -> Team:
         self.teams[team.id] = team
         return team
+
+    async def get_by_id(self, team_id: UUID) -> Team:
+        return self.teams.get(team_id)

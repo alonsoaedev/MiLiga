@@ -14,4 +14,7 @@ class InMemoryTournamentRepository(TournamentRepository):
     async def save(self, tournament: Tournament) -> Tournament:
         self._tournaments[tournament.id] = tournament
         return tournament
+    
+    async def get_by_id(self, tournament_id: UUID) -> Tournament:
+        return self._tournaments.get(tournament_id)
 
